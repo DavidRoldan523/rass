@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <!-- VISTA DE CREACIÓN -->
+        <record model="ir.ui.view" id="report_rass_form_view">
+            <field name="name">reportCongif.form</field>
+            <field name="model">report_rass.configuration</field>
+            <field name="arch" type="xml">
+                <form string="Report Form">
+                    <sheet>
+                        <group>                            
+                            <field name="BusinessName"/>
+                            <field name="BusinessId"/>
+                            <field name="InvoiceType"/>
+                            <field name="TemplateBusiness" domain="[('report_type','=','aeroo')]"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- VISTA DE CREACIÓN MODEL DINI-->
+        <record model="ir.ui.view" id="report_rass_form_view_dini">
+            <field name="name">reportDini.form</field>
+            <field name="model">report_rass.dini</field>
+            <field name="arch" type="xml">
+                <form string="Report Form">
+                    <sheet>
+                        <group>  
+                            <field name="QR"/>                          
+                            <field name="IdDocumentTributario"/>
+                            <field name="TypeIdentification"/>
+                            <field name="Identification"/>
+                            <field name="SocialReasonBuyer"/>
+                            <field name="SocialReason"/>
+                            <field name="Cufe"/>
+                            <field name="DocumentNumber"/>
+                            <field name="DateEmision"/>
+                            <field name="AddressMatriz"/>
+                            <field name="TotalWithOutTax"/>
+                            <field name="TotalDiscount"/>
+                            <field name="TotalAmount"/>
+                            <field name="MotiveNoteCredit"/>
+                            <field name="TaxTotal"/>
+                            <field name="Address"/>
+                            <field name="IdCompany"/>
+                            <field name="TotalProduct"/>
+                            <field name="BaseTax"/>
+                            <field name="IdDocument"/>
+                            <field name="TypeDocument"/>
+                            <field name="BaseTaxC"/>
+                            <field name="TarifeTaxC"/>
+                            <field name="AmountTotalCal"/>
+                            <field name="Reference1"/>
+                            <field name="Reference2"/>
+                            <field name="NameContribuyente"/>
+                            <field name="IdentificationContribuyente"/>
+                            <field name="AdditionalInfo"/>
+                            <field name="Prefix"/>    
+                            <field name="Neighborhood"/>  
+                            <field name="City"/>  
+                            <field name="Neighborhood"/>  
+                            <field name="ValueNeto"/>  
+                            <field name="SinceNumeration"/>  
+                            <field name="UntilNumeration"/>  
+                            <field name="BillingAuthorization"/>       
+                            <field name="SinceBillingAuthorization"/> 
+                            <field name="UntilBillingAuthorization"/> 
+                            <field name="NumberRelatedDocument"/> 
+                            <field name="DateEmisionInvoice"/> 
+                            <field name="Telephone1"/> 
+                            <field name="TelephoneBuyer"/> 
+                            <field name="Currency"/>
+                            <field name="Email"/>          
+                            <field name="AdditionalInfoImpuestos"/>           
+                            <field name="DocumentLines"/>           
+                            <field name="ImpuestosDetalle"/>        
+                            <field name="ImpuestosDetalle2"/> 
+                            <field name="EstadoCuenta"/>           
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>        
+
+    <!-- VISTA DE SEACRH -->
+        <record model="ir.ui.view" id="report_rass_search_view">
+            <field name="name">reportRass.search</field>
+            <field name="model">report_rass.configuration</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="BusinessName"/>
+                    <field name="BusinessId"/>
+                    <field name="InvoiceType"/>
+                    <field name="TemplateBusiness"/>
+                </search>
+            </field>
+        </record>
+
+         <!-- VISTA DE SEACRH MODEL DINI-->
+        <record model="ir.ui.view" id="report_rass_search_view_dini">
+            <field name="name">reportDini.search</field>
+            <field name="model">report_rass.dini</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="IdDocumentTributario"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- VISTA DE SEACRH CONFIGURATION -->
+        <record model="ir.ui.view" id="report_rass_search_view_configuration">
+            <field name="name">reportConfig.search</field>
+            <field name="model">report_rass.configuration</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="BusinessId"/>
+                </search>
+            </field>
+        </record>
+
+    <!-- VISTA DE ÁRBOL CONFIG-->
+        <record model="ir.ui.view" id="report_rass_tree_view">
+            <field name="name">reportRass.tree</field>
+            <field name="model">report_rass.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">
+                    <field name="BusinessName"/>
+                    <field name="BusinessId"/>
+                    <field name="InvoiceType"/>
+                    <field name="TemplateBusiness"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI-->
+        <record model="ir.ui.view" id="report_rass_tree_view_dini">
+            <field name="name">reportDini.tree</field>
+            <field name="model">report_rass.dini</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">
+                    <field name="QR"/>  
+                    <field name="IdDocumentTributario"/>
+                    <field name="TypeIdentification"/>
+                    <field name="Identification"/>
+                    <field name="SocialReasonBuyer"/>
+                    <field name="SocialReason"/>
+                    <field name="Cufe"/>
+                    <field name="DocumentNumber"/>
+                    <field name="DateEmision"/>
+                    <field name="AddressMatriz"/>
+                    <field name="TotalWithOutTax"/>
+                    <field name="TotalDiscount"/>
+                    <field name="TotalAmount"/>
+                    <field name="MotiveNoteCredit"/>
+                    <field name="TaxTotal"/>
+                    <field name="Address"/>
+                    <field name="IdCompany"/>
+                    <field name="TotalProduct"/>
+                    <field name="BaseTax"/>
+                    <field name="IdDocument"/>
+                    <field name="TypeDocument"/>
+                    <field name="BaseTaxC"/>
+                    <field name="TarifeTaxC"/>
+                    <field name="AmountTotalCal"/>
+                    <field name="Reference1"/>
+                    <field name="Reference2"/>
+                    <field name="NameContribuyente"/>
+                    <field name="IdentificationContribuyente"/>
+                    <field name="AdditionalInfo"/>
+                    <field name="Prefix"/>    
+                    <field name="Neighborhood"/>  
+                    <field name="City"/>  
+                    <field name="Neighborhood"/>  
+                    <field name="ValueNeto"/>  
+                    <field name="SinceNumeration"/>  
+                    <field name="UntilNumeration"/>  
+                    <field name="BillingAuthorization"/>       
+                    <field name="SinceBillingAuthorization"/> 
+                    <field name="UntilBillingAuthorization"/> 
+                    <field name="NumberRelatedDocument"/> 
+                    <field name="DateEmisionInvoice"/> 
+                    <field name="Telephone1"/> 
+                    <field name="TelephoneBuyer"/> 
+                    <field name="Currency"/>    
+                    <field name="Email"/>    
+                    <field name="AdditionalInfoImpuestos"/>           
+                    <field name="DocumentLines"/>           
+                    <field name="ImpuestosDetalle"/>        
+                    <field name="ImpuestosDetalle2"/> 
+                    <field name="EstadoCuenta"/>   
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  ADICIONALES-->
+        <record model="ir.ui.view" id="report_rass_tree_view_aditional">
+            <field name="name">reportDiniAditional.tree</field>
+            <field name="model">report_rass.aditional</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="position"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  ADICIONALES IMP-->
+        <record model="ir.ui.view" id="report_rass_tree_view_aditionalimp">
+            <field name="name">reportDiniAditionalImp.tree</field>
+            <field name="model">report_rass.aditionalimp</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="position"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  DETALLES-->
+        <record model="ir.ui.view" id="report_rass_tree_view_detalles">
+            <field name="name">reportDiniDetalles.tree</field>
+            <field name="model">report_rass.documentlines</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="IdDocumentLine"/>
+                    <field name="IdDocumentTributario"/>
+                    <field name="CodeAuxiliar"/>
+                    <field name="Description"/>
+                    <field name="Quantity"/>
+                    <field name="PriceUnit"/>
+                    <field name="Discount"/>
+                    <field name="TotalPriceWithOutTax"/>
+                    <field name="DocumentdetalleAditional"/>
+                    <field name="PercentIva"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  DETALLES ADITIONAL-->
+        <record model="ir.ui.view" id="report_rass_tree_view_detalles_aditional">
+            <field name="name">reportDiniDetallesAditional.tree</field>
+            <field name="model">report_rass.documentlinesadi</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="position"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  IMPUESTOS DETALLE-->
+        <record model="ir.ui.view" id="report_rass_tree_view_impuestos_detalle">
+            <field name="name">reportDiniImpDetalle.tree</field>
+            <field name="model">report_rass.impuestos_detalle</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="TotalIva"/>
+                    <field name="TotalImpCons"/>
+                    <field name="TotalImpRent"/>
+                    <field name="PorcentIva"/>
+                    <field name="PercentImpCons"/>
+                    <field name="PercentImpRent"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  IMPUESTOS DETALLE2-->
+        <record model="ir.ui.view" id="report_rass_tree_view_impuestos_detalle2">
+            <field name="name">reportDiniImpDetalle2.tree</field>
+            <field name="model">report_rass.impuestos_detalle2</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="IdTax"/>
+                    <field name="BaseImponible"/>
+                    <field name="ValueTax"/>
+                    <field name="TarifeTax"/>
+                    <field name="QuantityImpLine"/>
+                    <field name="BaseUniMesureLine"/>
+                    <field name="QuantityImpXUniLine"/>
+                    <field name="PercentImpLine"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTA DE ÁRBOL MODEL DINI  ESTADO CUENTA-->
+        <record model="ir.ui.view" id="report_rass_tree_view_estado_cuenta">
+            <field name="name">reportDiniEstadoCuenta.tree</field>
+            <field name="model">report_rass.estado_cuenta</field>
+            <field name="arch" type="xml">
+                <tree string="Report Rass Tree">        
+                    <field name="IdDocumentoTributario"/>
+                    <field name="StateAccount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Report Action -->
+        <record model="ir.actions.act_window" id="report_rass_list_action">
+            <field name="name">Reportes RASS</field>
+            <field name="res_model">report_rass.configuration</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Configuración por empresa
+                </p>
+            </field>
+        </record>
+
+        <!-- Report Action MODELO DINI-->
+        <record model="ir.actions.act_window" id="report_rass_dini_list_action">
+            <field name="name">Report Dini</field>
+            <field name="res_model">report_rass.dini</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Crear el primer reporte
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem sequence="1" id="main_report_rass_menu" name="Report RASS"/>
+
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="report_rass_menu" name="Configuración"
+                  parent="main_report_rass_menu"/>
+
+        <menuitem id="report_rass_dini_menu" name="Reportes Dini"
+                  parent="main_report_rass_menu"/>
+        <!-- A second level in the left side menu is needed
+             before using action= attribute -->
+        <!-- <menuitem id="report_rass_menu_conf" name="Configuración"
+                  parent="main_report_rass_menu"/> -->
+
+        <!-- Report menu parent report_rass_menu -->
+        <menuitem id="reportmenu_rass_menu" name="Empresa"
+                  parent="report_rass_menu"
+                  action="report_rass_list_action"/>
+                  
+        <menuitem id="reportmenu_aeroo_rass_menu" name="Plantilla"
+                  parent="report_rass_menu"
+                  action="report_aeroo.action_aeroo_report_xml_tree"/>
+
+        <menuitem id="reportmenu_rass_dini_menu" name="Reportes"
+                  parent="report_rass_dini_menu"
+                  action="report_rass_dini_list_action"/>
+
+        <!-- <menuitem id="reportmenu_rass_prueba_menu" name="Report Dini pru"
+                  parent="report_rass_dini_menu"
+                  action="report_rass_prueba_list_action"/> -->
+        <!-- Report menu conf parent report_rass_menu -->
+    </data>
+</openerp>
