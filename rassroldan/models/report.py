@@ -73,6 +73,13 @@ class ConvertDini(models.Model):
     ImpuestosDetalle = fields.Many2one('report_rass.impuestos_detalle', string='Impuestos detalle')
     ImpuestosDetalle2 = fields.Many2one('report_rass.impuestos_detalle2', string='Impuestos detalle2')
     EstadoCuenta = fields.Many2one('report_rass.estado_cuenta', string='Estado cuenta')
+    
+    @api.model
+    @api.multi
+    def deleteRecordsRass(self):
+        deleteRecords = self.env['report_rass.dini'].sudo().search([])
+        for delete in deleteRecords:
+            delete.unlink()
 
 class Images(models.Model):
     _name = "report_rass.images"
