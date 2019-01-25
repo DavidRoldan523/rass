@@ -48,88 +48,94 @@ class ReportController(http.Controller):
     @http.route('/api/rass', type='json', auth='public', methods=['POST'], csrf=False)
     
     def rass(self, **args):
-        validate = self.validateAuthorization(http.request)
-        if validate == True: 
-            dini = args.get("dini",False)
-            if not dini:
-                return json.dumps({
-                    "error":"peticion incorrecta"
-                })
-            else:
-                company = http.request.env["report_rass.configuration"].sudo().search([('BusinessId','=',dini["cabecera"]["IdEmpresa"])])
-                if not company:
+        dini = args.get("dini",False)
+        if dini:
+            validate = self.validateAuthorization(http.request)
+            if validate == True: 
+                dini = args.get("dini",False)
+                if not dini:
                     return json.dumps({
-                        "error": "Esta empresa no esta configurada."
+                        "error":"peticion incorrecta"
                     })
                 else:
-                    try:
-                        POLLING_DELAY = 1.00
-                        rassobj = self.saveModelFromDini(dini)
-                        #pepe = http.request.env['report_rass.dini'].sudo().browse(rassobj.id)                    
-                    
-                        print_ids = [rassobj.id]
-                        rep_obj = http.request.env['ir.actions.report.xml']
-                        data = {
-                                'model': http.request.env['report_rass.dini'],
-                                'ids': print_ids,
-                                'id': print_ids[0]
-                            
-                                }
-                        action =  {
-                                'type': 'ir.actions.report.xml',
-                                'report_name': company.TemplateBusiness.report_name,
-                                'datas': data,
-                                'context': http.request.env.context
-                                }                
-                        report_data = {}
-                        report_ids = [rassobj.id]
-                        _logger.info('rass obj id %s', rassobj.id)
-                        if 'report_type' in action:
-                            report_data['report_type'] ='aeroo'
-                        if 'datas' in action:
-                            if 'ids' in action['datas']:
-                                report_ids = action['datas'].pop('ids')
-                            report_data.update(action['datas'])
-                        #context = http.request.env.context
-                        contexto = {'lang': 'es_CO', 'tz': False, 'uid': 1, 'active_model': 'report_rass.dini'}            
-                        #uid = http.request.session.authenticate(http.request.session.db, 'jroldan','admin123')
-                        #_logger.info('report id22 %s', report_ids)
-                        report_id = exp_report("rass9", 1, str(action["report_name"]), report_ids, report_data, contexto)
-                        _logger.info('db2 %s', str(request.session.db))
-                        _logger.info('uid2 %s', str(request.session.uid))
-                        _logger.info('report name2 %s', str(action["report_name"]))
-                        _logger.info('reports id2 %s', str(report_ids))
-                        _logger.info('report data2 %s', str(report_data))
-                        _logger.info('contexto2 %s', str(contexto))
-                        _logger.info('report id2 %s', str(report_id))   
-                        report_struct = None
-                        report_struct = exp_report_get("rass9", 1, report_id)
-                        
-                        while True:
-                            _logger.info('sisarras %s', str(contexto))
-                            report_struct = exp_report_get("rass9", 1, report_id)
-                            if report_struct["state"]:
-                                break
-                            time.sleep(POLLING_DELAY)
-                            
-                        _logger.info('reporte base 64 result %s', report_struct['result'])
-                        report_fin = str(report_struct['result'])
-                        final = report_fin.replace("\n", "")
-                        reporte_final = base64.b64decode(report_struct['result'])
-
-                        _logger.info('reporte base 64 %s', str(reporte_final))
-
+                    company = http.request.env["report_rass.configuration"].sudo().search([('BusinessId','=',dini["cabecera"]["IdEmpresa"])])
+                    if not company:
                         return json.dumps({
-                            "success": str(final)
+                            "error": "Esta empresa no esta configurada."
                         })
-                    except Exception, e:  
-                        return json.dumps({
-                            "userMessage": "La peticion es incorrecta",
-                            "error": str(e)
-                        }) 
+                    else:
+                        try:
+                            POLLING_DELAY = 1.00
+                            rassobj = self.saveModelFromDini(dini)
+                            #pepe = http.request.env['report_rass.dini'].sudo().browse(rassobj.id)                    
+                        
+                            print_ids = [rassobj.id]
+                            rep_obj = http.request.env['ir.actions.report.xml']
+                            data = {
+                                    'model': http.request.env['report_rass.dini'],
+                                    'ids': print_ids,
+                                    'id': print_ids[0]
+                                
+                                    }
+                            action =  {
+                                    'type': 'ir.actions.report.xml',
+                                    'report_name': company.TemplateBusiness.report_name,
+                                    'datas': data,
+                                    'context': http.request.env.context
+                                    }                
+                            report_data = {}
+                            report_ids = [rassobj.id]
+                            _logger.info('rass obj id %s', rassobj.id)
+                            if 'report_type' in action:
+                                report_data['report_type'] ='aeroo'
+                            if 'datas' in action:
+                                if 'ids' in action['datas']:
+                                    report_ids = action['datas'].pop('ids')
+                                report_data.update(action['datas'])
+                            #context = http.request.env.context
+                            contexto = {'lang': 'es_CO', 'tz': False, 'uid': 1, 'active_model': 'report_rass.dini'}            
+                            #uid = http.request.session.authenticate(http.request.session.db, 'jroldan','admin123')
+                            #_logger.info('report id22 %s', report_ids)
+                            report_id = exp_report("rass9", 1, str(action["report_name"]), report_ids, report_data, contexto)
+                            _logger.info('db2 %s', str(request.session.db))
+                            _logger.info('uid2 %s', str(request.session.uid))
+                            _logger.info('report name2 %s', str(action["report_name"]))
+                            _logger.info('reports id2 %s', str(report_ids))
+                            _logger.info('report data2 %s', str(report_data))
+                            _logger.info('contexto2 %s', str(contexto))
+                            _logger.info('report id2 %s', str(report_id))   
+                            report_struct = None
+                            report_struct = exp_report_get("rass9", 1, report_id)
+                            
+                            while True:
+                                _logger.info('sisarras %s', str(contexto))
+                                report_struct = exp_report_get("rass9", 1, report_id)
+                                if report_struct["state"]:
+                                    break
+                                time.sleep(POLLING_DELAY)
+                                
+                            _logger.info('reporte base 64 result %s', report_struct['result'])
+                            report_fin = str(report_struct['result'])
+                            final = report_fin.replace("\n", "")
+                            reporte_final = base64.b64decode(report_struct['result'])
+
+                            _logger.info('reporte base 64 %s', str(reporte_final))
+
+                            return json.dumps({
+                                "success": str(final)
+                            })
+                        except Exception, e:  
+                            return json.dumps({
+                                "userMessage": "La peticion es incorrecta",
+                                "error": str(e)
+                            }) 
+            else:
+                return validate
+        #return request.session.uid
         else:
-            return validate
-     #return request.session.uid
+            return json.dumps({
+                                "userMessage": "La peticion es incorrecta, no se recibieron los parametros"
+                            })
 
     def saveModelFromDini(self,dini):
         """interpretara y guardara"""
