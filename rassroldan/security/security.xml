@@ -1,0 +1,8 @@
+<openerp>
+    <data>
+        <record id="rass_mananger" model="report_rass.dini">
+            <field name="name">Rass / Manager</field>
+        </record>
+    </data>
+</openerp>
+
